@@ -14,12 +14,8 @@ import resource
 import itertools
 from collections import Counter
 import pickle
-
-import sys
-sys.path.append('/kaggle/working/')
-
-from gqa.gqa_dataset import *
-from gqa.mnnm_models.soft_logic_transformer import *
+from gqa_dataset import *
+from mnnm_models.soft_logic_transformer import *
 from workflow.mnnm_arguments import *
 from workflow.metrics import *
 
