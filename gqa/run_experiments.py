@@ -14,10 +14,10 @@ import resource
 import itertools
 from collections import Counter
 import pickle
-from gqa.gqa_dataset import *
-from gqa.mnnm_models.soft_logic_transformer import *
-from gqa.workflow.mnnm_arguments import *
-from gqa.workflow.metrics import *
+from gqa_dataset import *
+from mnnm_models.soft_logic_transformer import *
+from workflow.mnnm_arguments import *
+from workflow.metrics import *
 
 device = torch.device('cuda')
 rlimit = resource.getrlimit(resource.RLIMIT_NOFILE)
