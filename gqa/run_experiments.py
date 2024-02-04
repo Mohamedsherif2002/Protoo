@@ -14,8 +14,8 @@ import resource
 import itertools
 from collections import Counter
 import pickle
-from kaggle.working.Protoo.gqa.gqa_dataset.py import *
-from kaggle.working.Protoo.gqa.mnnm_models.soft_logic_transformer import *
+from gqa_dataset import *
+from mnnm_models.soft_logic_transformer import *
 from workflow.mnnm_arguments import *
 from workflow.metrics import *
 
