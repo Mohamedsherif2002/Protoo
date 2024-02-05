@@ -59,11 +59,9 @@ def main():
         inv_answer = {v: k for k, v in answer.items()}
 
     MAX_LAYER = args.max_layer
-    print("nnn")
+    
     if args.ensemble:
-        print("mm")
         if args.do_testdev_pred:
-            print("mmm")
             filenames = glob.glob('ensembles/testdev_ensemble_*.pkl')
             print("loading {}".format(filenames))
             ensembles = []
@@ -115,10 +113,11 @@ def main():
             with open('submission_results.json', 'w') as f:
                 json.dump(submissions, f)
             exit()
-    print("n")
+    
     print("running model with {}".format(args.model))
+    print("Model:", args.model)
     if args.model == "SoftLogicTransformer":
-        print("shit")
+        print("SoftLogicTransformer model detected.")
         model = SoftLogicTransformer(vocab_size=len(vocab), stacking=args.stacking, answer_size=len(answer),
                                      visual_dim=args.visual_dim, coordinate_dim=args.additional_dim, n_head=args.n_head,
                                      n_layers=MAX_LAYER, dropout=args.dropout, intermediate_dim=args.num_regions + 1,
