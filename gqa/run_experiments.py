@@ -15,7 +15,6 @@ import itertools
 from collections import Counter
 import pickle
 from gqa_dataset import *
-from mnnm_models.soft_logic_transformer import SoftLogicTransformer
 from mnnm_models.soft_logic_transformer import *
 from workflow.mnnm_arguments import *
 from workflow.metrics import *
@@ -51,7 +50,7 @@ def main():
         os.mkdir(args.output)
     if not os.path.exists(repo):
         os.mkdir(repo)
-
+    print("nn")
     with open('{}/full_vocab.json'.format(args.meta), 'r') as f:
         vocab = json.load(f)
         ivocab = {v: k for k, v in vocab.items()}
