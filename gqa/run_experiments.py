@@ -15,6 +15,7 @@ import itertools
 from collections import Counter
 import pickle
 from gqa_dataset import *
+from mnnm_models.soft_logic_transformer import SoftLogicTransformer
 from mnnm_models.soft_logic_transformer import *
 from workflow.mnnm_arguments import *
 from workflow.metrics import *
