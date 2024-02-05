@@ -123,8 +123,8 @@ def main():
                                      n_layers=MAX_LAYER, dropout=args.dropout, intermediate_dim=args.num_regions + 1,
                                      pre_layers=args.pre_layers, intermediate_layer=args.intermediate_layer)
         print("Running Modular Transformer model with {} layers with post layer".format(args.stacking))
-    # else:
-    #     raise NotImplementedError
+    else:
+        raise NotImplementedError
 
     if not args.single:
         model = nn.DataParallel(model)
