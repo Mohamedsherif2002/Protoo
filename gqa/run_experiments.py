@@ -61,7 +61,9 @@ def main():
     MAX_LAYER = args.max_layer
     print("nnn")
     if args.ensemble:
+        print("mm")
         if args.do_testdev_pred:
+            print("mmm")
             filenames = glob.glob('ensembles/testdev_ensemble_*.pkl')
             print("loading {}".format(filenames))
             ensembles = []
