@@ -117,6 +117,7 @@ def main():
 
     print("running model with {}".format(args.model))
     if args.model == "SoftLogicTransformer":
+        print("shit")
         model = SoftLogicTransformer(vocab_size=len(vocab), stacking=args.stacking, answer_size=len(answer),
                                      visual_dim=args.visual_dim, coordinate_dim=args.additional_dim, n_head=args.n_head,
                                      n_layers=MAX_LAYER, dropout=args.dropout, intermediate_dim=args.num_regions + 1,
