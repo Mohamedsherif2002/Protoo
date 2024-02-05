@@ -50,7 +50,6 @@ def main():
         os.mkdir(args.output)
     if not os.path.exists(repo):
         os.mkdir(repo)
-    print("nn")
     with open('{}/full_vocab.json'.format(args.meta), 'r') as f:
         vocab = json.load(f)
         ivocab = {v: k for k, v in vocab.items()}
@@ -60,7 +59,7 @@ def main():
         inv_answer = {v: k for k, v in answer.items()}
 
     MAX_LAYER = args.max_layer
-
+    print("nnn")
     if args.ensemble:
         if args.do_testdev_pred:
             filenames = glob.glob('ensembles/testdev_ensemble_*.pkl')
@@ -114,7 +113,7 @@ def main():
             with open('submission_results.json', 'w') as f:
                 json.dump(submissions, f)
             exit()
-
+    print("n")
     print("running model with {}".format(args.model))
     if args.model == "SoftLogicTransformer":
         print("shit")
