@@ -1,6 +1,6 @@
 # generate candidate answers given programs
 import time
-from gqa.gqa_dataset import *
+from ..gqa_dataset import *
 
 
 def generate_dicts(encode=True):
