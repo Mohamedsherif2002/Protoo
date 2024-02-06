@@ -138,7 +138,7 @@ def main():
 
     # generate restriction dict.
 
-    program_type_to_cand = pickle.load(open('meta_info/type2cand_dict.pkl', 'rb'))
+    # program_type_to_cand = pickle.load(open('meta_info/type2cand_dict.pkl', 'rb'))
     pt_to_cand_mask = {k: torch.zeros(len(answer)) for k in program_type_to_cand}
     for key in program_type_to_cand:
         for ele in program_type_to_cand[key]:
