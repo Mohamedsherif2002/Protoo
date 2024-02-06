@@ -139,10 +139,10 @@ def main():
     # generate restriction dict.
 
     # program_type_to_cand = pickle.load(open('meta_info/type2cand_dict.pkl', 'rb'))
-    pt_to_cand_mask = {k: torch.zeros(len(answer)) for k in program_type_to_cand}
-    for key in program_type_to_cand:
-        for ele in program_type_to_cand[key]:
-            pt_to_cand_mask[key][ele] = 1
+    # pt_to_cand_mask = {k: torch.zeros(len(answer)) for k in program_type_to_cand}
+    # for key in program_type_to_cand:
+    #     for ele in program_type_to_cand[key]:
+    #         pt_to_cand_mask[key][ele] = 1
 
     if args.do_train or args.do_train_all or args.do_finetune:
         if args.do_train_all:
