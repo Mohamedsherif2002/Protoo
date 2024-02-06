@@ -406,10 +406,10 @@ def test_dataset():
 
 
 def generate_dicts(encode=True):
-    with open('{}/full_vocab.json'.format('meta_info/'), 'r') as f:
+    with open('{}/full_vocab.json'.format('meta_info'), 'r') as f:
         vocab = json.load(f)
 
-    with open('{}/answer_vocab.json'.format('meta_info/'), 'r') as f:
+    with open('{}/answer_vocab.json'.format('meta_info'), 'r') as f:
         answer = json.load(f)
 
     split = 'trainval_all_fully'
