@@ -1,6 +1,7 @@
 # generate candidate answers given programs
 import time
-from ..gqa_dataset import *
+from Protoo.gqa.gqa_dataset import *
+
 
 
 def generate_dicts(encode=True):
