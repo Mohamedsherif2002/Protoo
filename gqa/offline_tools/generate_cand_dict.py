@@ -1,6 +1,6 @@
 # generate candidate answers given programs
 import time
-from Protoo.gqa.gqa_dataset import *
+from gqa.gqa_dataset import *
 
 
 
