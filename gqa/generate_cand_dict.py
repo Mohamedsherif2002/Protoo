@@ -4,6 +4,7 @@ from gqa_dataset import *
 
 
 def generate_dicts(encode=True):
+    print("entered generate_dicts")
     with open('{}/full_vocab.json'.format('meta_info/'), 'r') as f:
         vocab = json.load(f)
 
