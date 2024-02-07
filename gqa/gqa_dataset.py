@@ -40,7 +40,10 @@ class GQA(Dataset):
         else:
             meta_list_p = os.path.join('mmnm_questions/', 'list_' + self.split + ".pkl")
             print(f"Loading meta data from {meta_list_p}.")
+            print("Before loading metadata")
             self.data = pickle.load(open(meta_list_p, 'rb'))
+            print("After loading metadata")
+
 
         with open(args['object_info']) as f:
             self.object_info = json.load(f)
