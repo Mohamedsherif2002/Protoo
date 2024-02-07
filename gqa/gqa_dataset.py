@@ -188,11 +188,8 @@ def create_splited_questions(dataset, save_dir='mmnm_questions/'):
 
 def generate_meta_list(dataset):
     print("Entered generate_meta_list successfully")
-    if dataset.data is None:
-        print("Error: dataset.data is None")
-        return
     data_list = []
-    print(data_list)
+    print(dataset)
     for idx, entry in enumerate(dataset.data):
         print(f"[{dataset.split}]processing idx {idx} ...", end='\r')
         image_id = entry[0]
