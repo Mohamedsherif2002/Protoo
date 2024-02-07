@@ -39,19 +39,15 @@ class GQA(Dataset):
             self.data = pickle.load(open(self.failure_p, 'rb'))
         else:
             self.load_or_generate_meta_list()
-
-            with open(args['object_info']) as f:
-                self.object_info = json.load(f)
-            print(f"there are in total {len(self.data)} instances.")
-    
+            meta_list_p = os.path.join('mmnm_questions/', 'list_' + self.split + ".pkl")
+            print(f"Loading meta data from {meta_list_p}.")
+            print("Before loading metadata")
+            self.data = pickle.load(open(meta_list_p, 'rb'))
+            print("After loading metadata")
+        
     def load_or_generate_meta_list(self):
-        meta_list_p = os.path.join('mmnm_questions/', 'list_' + self.split + ".pkl")
-        if not os.path.exists(meta_list_p):
+        if not hasattr(self, 'data') or not self.data:
             self.generate_meta_list()
-        print(f"Loading meta data from {meta_list_p}.")
-        print("Before loading metadata")
-        self.data = pickle.load(open(meta_list_p, 'rb'))
-        print("After loading metadata")
 
     def generate_meta_list(self):
         data_list = []
