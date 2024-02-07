@@ -187,7 +187,9 @@ def create_splited_questions(dataset, save_dir='mmnm_questions/'):
 
 
 def generate_meta_list(dataset):
+    print("Entered generate_meta_list successfully")
     data_list = []
+    print(data_list)
     for idx, entry in enumerate(dataset.data):
         print(f"[{dataset.split}]processing idx {idx} ...", end='\r')
         image_id = entry[0]
@@ -195,6 +197,8 @@ def generate_meta_list(dataset):
         data_list.append((image_id, questionId))
     save_p = os.path.join('mmnm_questions/', 'list_' + dataset.split + ".pkl")
     pickle.dump(data_list, open(save_p, 'wb'))
+    print("finished generate_meta_list successfully")
+
 
 
 def test_dataset():
