@@ -34,23 +34,21 @@ class GQA(Dataset):
             self.forbidden = set(self.forbidden)
         else:
             self.forbidden = set([])
-
-        self.load_or_generate_meta_list()  # Initialize data attribute
-
         if self.failure_p is not None:
             print(f"Loading failed data from {self.failure_p}.")
             self.data = pickle.load(open(self.failure_p, 'rb'))
         else:
+            
             meta_list_p = os.path.join('mmnm_questions/', 'list_' + self.split + ".pkl")
             print(f"Loading meta data from {meta_list_p}.")
             print("Before loading metadata")
             self.data = pickle.load(open(meta_list_p, 'rb'))
             print("After loading metadata")
 
-    def load_or_generate_meta_list(self):
-        if not hasattr(self, 'data') or not self.data:
-            self.generate_meta_list()
 
+        with open(args['object_info']) as f:
+            self.object_info = json.load(f)
+        print(f"there are in total {len(self.data)} instances.")
 
     def __getitem__(self, index):
         if self.failure_p:
@@ -186,22 +184,15 @@ def create_splited_questions(dataset, save_dir='mmnm_questions/'):
         pickle.dump(cur_meta, open(save_p, 'wb'))
 
 
-def generate_meta_list(split, save_dir='mmnm_questions/'):
+def generate_meta_list(dataset):
     data_list = []
-    dataset = GQA(split=split, mode='train', contained_weight=0.1,
-                  threshold=0.0, folder='gqa_bottom_up_features/', cutoff=0.5,
-                  vocab=None, answer=None, forbidden='',
-                  object_info='meta_info/gqa_objects_merged_info.json',
-                  num_tokens=30, num_regions=48, length=9, max_layer=5,
-                  distribution=False)
     for idx, entry in enumerate(dataset.data):
         print(f"[{dataset.split}]processing idx {idx} ...", end='\r')
         image_id = entry[0]
         questionId = entry[-2]
         data_list.append((image_id, questionId))
-    save_p = os.path.join(save_dir, 'list_' + split + ".pkl")
+    save_p = os.path.join('mmnm_questions/', 'list_' + dataset.split + ".pkl")
     pickle.dump(data_list, open(save_p, 'wb'))
-
 
 
 def test_dataset():
