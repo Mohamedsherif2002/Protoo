@@ -166,6 +166,7 @@ class GQA(Dataset):
 
 
 def create_splited_questions(dataset, save_dir='mmnm_questions/'):
+    print(f"Saving data to: {save_dir}")
     for idx, entry in enumerate(dataset.data):
         print(f"[{dataset.mode}]processing idx {idx} ...", end='\r')
         image_id = entry[0]
