@@ -18,7 +18,7 @@ def generate_dicts(encode=True):
 
     type2cand_dict = {}
     start_t = time.time()
-    create_splited_questions()
+    create_splited_questions(dataset)    
     for idx, ele in enumerate(gqa_d.data):
         if idx % 1000 == 0:
             time_per_iter = (time.time() - start_t) / (idx + 1e-9)
