@@ -47,6 +47,9 @@ class GQA(Dataset):
             self.data = pickle.load(open(meta_list_p, 'rb'))
             print("After loading metadata")
 
+    def load_or_generate_meta_list(self):
+        if not hasattr(self, 'data') or not self.data:
+            self.generate_meta_list()
 
 
     def __getitem__(self, index):
