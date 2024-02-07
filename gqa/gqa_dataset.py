@@ -47,8 +47,9 @@ class GQA(Dataset):
             meta_list_p = os.path.join('mmnm_questions/', 'list_' + self.split + ".pkl")
             print(f"Loading meta data from {meta_list_p}.")
             print("Before loading metadata")
-            self.data = pickle.load(open(meta_list_p, 'rb'))
+            data = pickle.load(open(meta_list_p, 'rb'))
             print("After loading metadata")
+            self.data = data
 
 
         with open(args['object_info']) as f:
@@ -192,7 +193,6 @@ def create_splited_questions(dataset, save_dir='mmnm_questions/'):
 def generate_meta_list(dataset):
     print("Entered generate_meta_list successfully")
     data_list = []
-    print(dataset)
     for idx, entry in enumerate(dataset.data):
         print(f"[{dataset.split}]processing idx {idx} ...", end='\r')
         image_id = entry[0]
