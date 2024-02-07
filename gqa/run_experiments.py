@@ -136,7 +136,7 @@ def main():
                         spatial_info='{}/gqa_spatial_merged_info.json'.format(args.meta),
                         forbidden=args.forbidden)
 
-    create_splited_questions()
+    
     # generate restriction dict.
     program_type_to_cand = pickle.load(open('meta_info/type2cand_dict.pkl', 'rb'))
     pt_to_cand_mask = {k: torch.zeros(len(answer)) for k in program_type_to_cand}
