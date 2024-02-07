@@ -35,14 +35,12 @@ class GQA(Dataset):
         else:
             self.forbidden = set([])
 
-        self.data = None  # Initialize data attribute
+        self.data = self.load_or_generate_meta_list()  # Initialize data attribute
 
         if self.failure_p is not None:
             print(f"Loading failed data from {self.failure_p}.")
             self.data = pickle.load(open(self.failure_p, 'rb'))
         else:
-            self.load_or_generate_meta_list()
-
             meta_list_p = os.path.join('mmnm_questions/', 'list_' + self.split + ".pkl")
             print(f"Loading meta data from {meta_list_p}.")
             print("Before loading metadata")
@@ -51,7 +49,8 @@ class GQA(Dataset):
 
     def load_or_generate_meta_list(self):
         if not self.data:
-            self.generate_meta_list()
+            return self.generate_meta_list()
+        return self.data
 
     def generate_meta_list(self):
         data_list = []
@@ -62,6 +61,7 @@ class GQA(Dataset):
             data_list.append((image_id, questionId))
         save_p = os.path.join('mmnm_questions/', 'list_' + self.split + ".pkl")
         pickle.dump(data_list, open(save_p, 'wb'))
+        return data_list
 
 
         
