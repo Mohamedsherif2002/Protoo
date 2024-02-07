@@ -38,17 +38,31 @@ class GQA(Dataset):
             print(f"Loading failed data from {self.failure_p}.")
             self.data = pickle.load(open(self.failure_p, 'rb'))
         else:
-            generate_meta_list(self.split)  # Call the function to generate the pkl file
-            meta_list_p = os.path.join('mmnm_questions/', 'list_' + self.split + ".pkl")
-            print(f"Loading meta data from {meta_list_p}.")
-            print("Before loading metadata")
-            self.data = pickle.load(open(meta_list_p, 'rb'))
-            print("After loading metadata")
+            self.load_or_generate_meta_list()
 
-        with open(args['object_info']) as f:
-            self.object_info = json.load(f)
-        print(f"there are in total {len(self.data)} instances.")
-        
+            with open(args['object_info']) as f:
+                self.object_info = json.load(f)
+            print(f"there are in total {len(self.data)} instances.")
+    
+    def load_or_generate_meta_list(self):
+        meta_list_p = os.path.join('mmnm_questions/', 'list_' + self.split + ".pkl")
+        if not os.path.exists(meta_list_p):
+            self.generate_meta_list()
+        print(f"Loading meta data from {meta_list_p}.")
+        print("Before loading metadata")
+        self.data = pickle.load(open(meta_list_p, 'rb'))
+        print("After loading metadata")
+
+    def generate_meta_list(self):
+        data_list = []
+        for idx, entry in enumerate(self.data):
+            print(f"[{self.split}]processing idx {idx} ...", end='\r')
+            image_id = entry[0]
+            questionId = entry[-2]
+            data_list.append((image_id, questionId))
+        save_p = os.path.join('mmnm_questions/', 'list_' + self.split + ".pkl")
+        pickle.dump(data_list, open(save_p, 'wb'))
+
     def __getitem__(self, index):
         if self.failure_p:
             question_id, image_id = self.data[index]
