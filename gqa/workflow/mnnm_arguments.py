@@ -17,7 +17,7 @@ def parse_opt():
     parser.add_argument('--do_submission', default=False, action="store_true",
                         help="whether to train or test the model")
     parser.add_argument('--ensemble', default=False, action="store_true", help="whether to train or test the model")
-    parser.add_argument('--data', type=str, default="/kaggle/input/proto-imgs/images/",
+    parser.add_argument('--data', type=str, default="gqa_bottom_up_features/",
                         help="whether to train or test the model")
     parser.add_argument('--object_info', type=str, default='gqa_objects_merged_info.json',
                         help="whether to train or test the model")

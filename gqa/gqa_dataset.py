@@ -208,7 +208,7 @@ def test_dataset():
         inv_answer = {v: k for k, v in answer.items()}
 
     train_dataset = GQA(split='trainval_all_fully', mode='train', contained_weight=0.1,
-                        threshold=0.0, folder='/kaggle/input/proto-imgs/images/', cutoff=0.5, vocab=vocab, answer=answer,
+                        threshold=0.0, folder='gqa_bottom_up_features/', cutoff=0.5, vocab=vocab, answer=answer,
                         forbidden='', object_info='meta_info/gqa_objects_merged_info.json', num_tokens=30,
                         num_regions=48, length=9, max_layer=5, distribution=False)
     test_d = train_dataset[0]
