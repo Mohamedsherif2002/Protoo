@@ -35,7 +35,7 @@ class GQA(Dataset):
         else:
             self.forbidden = set([])
 
-        self.data = self.load_or_generate_meta_list()  # Initialize data attribute
+        self.load_or_generate_meta_list()  # Initialize data attribute
 
         if self.failure_p is not None:
             print(f"Loading failed data from {self.failure_p}.")
@@ -47,37 +47,7 @@ class GQA(Dataset):
             self.data = pickle.load(open(meta_list_p, 'rb'))
             print("After loading metadata")
 
-    def load_or_generate_meta_list(self):
-        if not self.data:
-            return self.generate_meta_list()
-        return self.data
 
-    def generate_meta_list(self):
-        data_list = []
-        for idx, entry in enumerate(self.data):
-            print(f"[{self.split}]processing idx {idx} ...", end='\r')
-            image_id = entry[0]
-            questionId = entry[-2]
-            data_list.append((image_id, questionId))
-        save_p = os.path.join('mmnm_questions/', 'list_' + self.split + ".pkl")
-        pickle.dump(data_list, open(save_p, 'wb'))
-        return data_list
-
-
-        
-    def load_or_generate_meta_list(self):
-        if not hasattr(self, 'data') or not self.data:
-            self.generate_meta_list()
-
-    def generate_meta_list(self):
-        data_list = []
-        for idx, entry in enumerate(self.data):
-            print(f"[{self.split}]processing idx {idx} ...", end='\r')
-            image_id = entry[0]
-            questionId = entry[-2]
-            data_list.append((image_id, questionId))
-        save_p = os.path.join('mmnm_questions/', 'list_' + self.split + ".pkl")
-        pickle.dump(data_list, open(save_p, 'wb'))
 
     def __getitem__(self, index):
         if self.failure_p:
