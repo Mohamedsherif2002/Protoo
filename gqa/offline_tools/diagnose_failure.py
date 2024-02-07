@@ -12,7 +12,7 @@ def diagnose_failure():
 
     split = 'testdev_pred'
     failure_p = os.path.join("/lhddscratch/zelin/soft_vqa/gqa/cycle_mnnm/models/TreeSparsePost2Full", "TreeSparsePost2Full_failure.pkl")
-    diagnose = GQA(split=split, mode='val', contained_weight=0.1, threshold=0.0, folder='gqa_bottom_up_features/', cutoff=0.5, vocab=vocab, answer=answer,
+    diagnose = GQA(split=split, mode='val', contained_weight=0.1, threshold=0.0, folder='/kaggle/input/proto-imgs/images/', cutoff=0.5, vocab=vocab, answer=answer,
                    forbidden='', object_info='meta_info/gqa_objects_merged_info.json', num_tokens=30,
                    num_regions=48, length=9, max_layer=5, distribution=False, failure_path=failure_p)
 

@@ -13,7 +13,7 @@ def generate_dicts(encode=True):
 
     split = 'trainval_all_fully'
     mode = 'train'
-    gqa_d = GQA(split=split, mode=mode, contained_weight=0.1, threshold=0.0, folder='gqa_bottom_up_features/',
+    gqa_d = GQA(split=split, mode=mode, contained_weight=0.1, threshold=0.0, folder='/kaggle/input/proto-imgs/images/',
                 cutoff=0.5, vocab=vocab, answer=answer, forbidden='', object_info='meta_info/gqa_objects_merged_info.json',
                 num_tokens=30, num_regions=48, length=9, max_layer=5, distribution=False, failure_path=None)
 
