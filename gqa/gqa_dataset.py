@@ -13,6 +13,9 @@ from torch import nn
 
 class GQA(Dataset):
     def __init__(self, **args):
+        generate_meta_list(self)
+
+        
         self.mode = args['mode']
         self.split = args['split']
         self.vocab = args['vocab']
