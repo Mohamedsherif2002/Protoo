@@ -1,7 +1,6 @@
 # generate candidate answers given programs
 import time
 from gqa_dataset import *
-from torch.utils.data import Dataset
 
 
 def generate_dicts(encode=True):
@@ -19,9 +18,7 @@ def generate_dicts(encode=True):
 
     type2cand_dict = {}
     start_t = time.time()
-    print("Calling create_splited_questions")
-    create_splited_questions(gqa_d)
-    print("After create_splited_questions call")   
+    
     for idx, ele in enumerate(gqa_d.data):
         if idx % 1000 == 0:
             time_per_iter = (time.time() - start_t) / (idx + 1e-9)
