@@ -110,6 +110,7 @@ for k, vs in mapping.items():
 
 
 def show_im(k, x, y, w, h, title):
+	print("here")
 	im = np.array(Image.open("../images/{}.jpg".format(k)), dtype=np.uint8)
 	# Create figure and axes
 	fig, ax = plt.subplots(1)

@@ -13,6 +13,7 @@ from torch import nn
 
 class GQA(Dataset):
     def __init__(self, **args):
+
         self.mode = args['mode']
         self.split = args['split']
         self.vocab = args['vocab']
@@ -39,8 +40,6 @@ class GQA(Dataset):
             self.data = pickle.load(open(self.failure_p, 'rb'))
         else:
             print("11")
-            print(self.data)
-            print("22")
             meta_list_p = os.path.join('mmnm_questions/', 'list_' + self.split + ".pkl")
             print(f"Loading meta data from {meta_list_p}.")
             print("Before loading metadata")
