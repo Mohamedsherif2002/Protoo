@@ -40,10 +40,18 @@ class GQA(Dataset):
         else:
             meta_list_p = os.path.join('mmnm_questions/', 'list_' + self.split + ".pkl")
             print(f"Loading meta data from {meta_list_p}.")
-            print("Before loading metadata")
-            self.data = pickle.load(open(meta_list_p, 'rb'))
-            print("After loading metadata")
+            
+            if not os.path.exists(meta_list_p):
+                raise FileNotFoundError(f"File not found: {meta_list_p}")
 
+            try:
+                with open(meta_list_p, 'rb') as meta_file:
+                    print("Before loading metadata")
+                    self.data = pickle.load(meta_file)
+                    print("After loading metadata")
+            except Exception as e:
+                print(f"Error loading metadata: {e}")
+                raise
 
         with open(args['object_info']) as f:
             self.object_info = json.load(f)
@@ -105,7 +113,6 @@ class GQA(Dataset):
                 else:
                     pass
         vis_mask = np.zeros((self.num_regions,), 'float32')
-        # new_bottom_up = self.all_bottom_up[image_id]
 
         # Prepare Vision Feature
         bottom_up = np.load(os.path.join(self.folder, 'gqa_{}.npz'.format(image_id)))
@@ -127,7 +134,6 @@ class GQA(Dataset):
                 (padding, bbox_feat.shape[1]), 'float32')], 0)
         num_regions = bbox_feat.shape[0]
 
-        # exist = np.full((self.LENGTH, ), -1, 'float32')
         returns = entry[2]
         intermediate_idx = np.full(
             (self.LENGTH, num_regions + 1), 0, 'float32')
@@ -145,20 +151,13 @@ class GQA(Dataset):
                                          (returns[idx][3] + returns[idx][1]) / (obj_info['height'] + 0.))
                         for i in range(num_regions):
                             intersected, contain = intersect(gt_coordinate, bbox_feat[i, :4], True, 'x1y1x2y2')
-                            intersect_iou[idx][i] = intersected  # + self.contained_weight * contain
+                            intersect_iou[idx][i] = intersected
 
-                        # if self.distribution:
-                        # mask = (intersect_iou[idx] > self.cutoff).astype('float32')
-                        # intersect_iou[idx] *= mask
                         intermediate_idx[idx] = intersect_iou[idx] / (intersect_iou[idx].sum() + 0.001)
-                        # else:
-                        #    intermediate_idx[idx] = (intersect_iou[idx] > self.cutoff).astype('float32')
-                        #    intermediate_idx[idx] = intermediate_idx[idx] / (intermediate_idx[idx].sum() + 0.001)
         else:
             intermediate_idx = 0
-        # Prepare index selection
+
         index = length - 1
-        # Prepare answer
         answer_id = self.answer_vocab.get(entry[-1], UNK)
 
         return question, question_masks, program, program_masks, transition_masks, activate_mask, object_feat, \
@@ -209,5 +208,3 @@ def test_dataset():
                         num_regions=48, length=9, max_layer=5, distribution=False)
     test_d = train_dataset[0]
     print(test_d)
-
-
