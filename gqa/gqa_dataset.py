@@ -189,9 +189,9 @@ def create_splited_questions(dataset, save_dir='mmnm_questions/'):
 def generate_meta_list(dataset):
     print("Entered generate_meta_list successfully")
     data_list = []
-    print("here")
     print(data_list)
     for idx, entry in enumerate(dataset.data):
+        print("here")
         print(f"[{dataset.split}]processing idx {idx} ...", end='\r')
         image_id = entry[0]
         questionId = entry[-2]
