@@ -39,7 +39,7 @@ class GQA(Dataset):
             print(f"Loading failed data from {self.failure_p}.")
             self.data = pickle.load(open(self.failure_p, 'rb'))
         else:
-            print(self.split)
+            print("split_name: ", self.split)
             if self.split == "submission":
                 print("Here")
                 meta_list_p = os.path.join("/kaggle/input/gqa-questions/submission_all_questions.json")
