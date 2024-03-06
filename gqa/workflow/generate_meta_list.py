@@ -30,4 +30,4 @@ if __name__ == '__main__':
                         forbidden=args.forbidden)
     dataset = GQA(split='submission', mode='val', contained_weight=args.contained_weight,
                   threshold=args.threshold, folder=args.data, cutoff=args.cutoff, **basic_kwargs)
-    generate_meta_list()
+    generate_meta_list(dataset)
