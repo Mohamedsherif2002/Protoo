@@ -25,7 +25,7 @@ if __name__ == '__main__':
         answer = json.load(f)
     basic_kwargs = dict(length=args.length, object_info=os.path.join(args.meta, args.object_info),
                         num_regions=args.num_regions, distribution=args.distribution,
-                        vocab=vocab, answer=answer, max_layer=args.MAX_LAYER, num_tokens=args.num_tokens,
+                        vocab=vocab, answer=answer, max_layer=5, num_tokens=args.num_tokens,
                         spatial_info='/kaggle/input/gqa-spatial-features/spatial/gqa_spatial_info.json',
                         forbidden=args.forbidden)
     dataset = GQA(split='submission', mode='val', contained_weight=args.contained_weight,
