@@ -84,7 +84,7 @@ for k, v in SCENE_ONTOLOGY.items():
 with open('../meta_info/GQA_hypernym.json') as f:
 	hypernym = json.load(f)
 
-with open('.../meta_info/objects.json') as f:
+with open('../meta_info/objects.json') as f:
 	OBJECTS_INV = json.load(f)
 	OBJECTS = {k:i for i, k in enumerate(OBJECTS_INV)}
 
