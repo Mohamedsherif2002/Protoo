@@ -28,6 +28,7 @@ if __name__ == '__main__':
                         vocab=vocab, answer=answer, max_layer=5, num_tokens=args.num_tokens,
                         spatial_info='/kaggle/input/gqa-spatial-features/spatial/gqa_spatial_info.json',
                         forbidden=args.forbidden)
+    args['object_info'] = "/kaggle/input/gqa-object-features-p-3/gqa_objects_info.json"
     dataset = GQA(split='submission', mode='val', contained_weight=args.contained_weight,
                   threshold=args.threshold, folder=args.data, cutoff=args.cutoff, **basic_kwargs)
     generate_meta_list()
