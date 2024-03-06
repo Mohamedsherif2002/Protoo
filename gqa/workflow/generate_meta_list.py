@@ -1,6 +1,8 @@
 from gqa_dataset import GQA
 from mnnm_arguments import parse_opt
 import os
+import pickle
+
 
 def generate_meta_list(dataset):
     data_list = []
@@ -17,7 +19,7 @@ if __name__ == '__main__':
     args = parse_opt()
     basic_kwargs = dict(length=args.length, object_info=os.path.join(args.meta, args.object_info),
                         num_regions=args.num_regions, distribution=args.distribution,
-                        vocab=vocab, answer=answer, max_layer=MAX_LAYER, num_tokens=args.num_tokens,
+                        vocab=args.vocab, answer=args.answer, max_layer=args.MAX_LAYER, num_tokens=args.num_tokens,
                         spatial_info='/kaggle/input/gqa-spatial-features/spatial/gqa_spatial_info.json',
                         forbidden=args.forbidden)
     dataset = GQA(split='submission', mode='val', contained_weight=args.contained_weight,
