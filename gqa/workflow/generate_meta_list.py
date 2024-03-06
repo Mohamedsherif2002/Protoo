@@ -1,5 +1,6 @@
 from gqa_dataset import GQA
 from mnnm_arguments import parse_opt
+import os
 
 def generate_meta_list(dataset):
     data_list = []
