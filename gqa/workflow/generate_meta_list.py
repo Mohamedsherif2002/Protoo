@@ -8,7 +8,7 @@ import json
 def generate_meta_list(dataset):
     data_list = []
     for idx, entry in enumerate(dataset.data):
-        print(f"[{dataset.split}]processing idx {idx} ...", end='\r\n')
+        print(f"[{dataset.split}]processing idx {idx} ...", end='\r')
         image_id = entry[0]
         questionId = entry[-2]
         data_list.append((image_id, questionId))
