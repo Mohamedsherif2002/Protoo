@@ -12,14 +12,8 @@ def generate_meta_list(dataset):
         image_id = entry[0]
         questionId = entry[-2]
         data_list.append((image_id, questionId))
-        # Save the data_list to the pickle file
-        save_directory = 'mmnm_questions'
-        if not os.path.exists(save_directory):
-            os.makedirs(save_directory)
-
-        save_p = os.path.join(save_directory, f'list_{dataset.split}.pkl')
-        with open(save_p, 'wb') as file:
-            pickle.dump(data_list, file)
+    save_p = os.path.join('mmnm_questions/', 'list_' + dataset.split + ".pkl")
+    pickle.dump(data_list, open(save_p, 'wb'))
 
 
 if __name__ == '__main__':
