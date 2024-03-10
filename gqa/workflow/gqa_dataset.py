@@ -41,7 +41,7 @@ class GQA(Dataset):
         else:
             if self.split == "submission":
                 print("Here")
-                meta_list_p = os.path.join("/kaggle/input/gqa-questions/submission_all_questions.json")
+                meta_list_p = os.path.join("submission_all_questions.json")
             else:
                 meta_list_p = os.path.join('mmnm_questions/', 'list_' + self.split + ".pkl")
             print(f"Loading meta data from {meta_list_p}.")
@@ -54,7 +54,9 @@ class GQA(Dataset):
             print("After loading metadata")
 
 
-        with open(args['object_info']) as f:
+        print("Current directory:", os.getcwd())
+        print(args['object_info'])
+        with open("../" + args['object_info']) as f:
             self.object_info = json.load(f)
         print(f"there are in total {len(self.data)} instances.")
 

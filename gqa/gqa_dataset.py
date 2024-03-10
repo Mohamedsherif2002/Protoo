@@ -42,7 +42,10 @@ class GQA(Dataset):
             print("split_name: ", self.split)
             if self.split == "submission":
                 print("Here")
-                meta_list_p = os.path.join("/kaggle/input/gqa-questions/submission_all_questions.json")
+                if os.path.exists("mmnm_questions/submission_all_questions.pkl"):
+                    meta_list_p = os.path.join("workflow/submission_all_questions.json")
+                else:
+                    meta_list_p = os.path.join("mmnm_questions/list_submission.pkl")
             else:
                 meta_list_p = os.path.join('mmnm_questions/', 'list_' + self.split + ".pkl")
             

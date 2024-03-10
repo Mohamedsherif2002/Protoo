@@ -11,7 +11,7 @@ def generate_dicts(encode=True):
     with open('{}/answer_vocab.json'.format('meta_info/'), 'r') as f:
         answer = json.load(f)
 
-    split = 'trainval_all_fully'
+    split = 'submission'
     mode = 'train'
     gqa_d = GQA(split=split, mode=mode, contained_weight=0.1, threshold=0.0, folder='gqa_bottom_up_features/',
                 cutoff=0.5, vocab=vocab, answer=answer, forbidden='', object_info='meta_info/gqa_objects_merged_info.json',
@@ -19,13 +19,15 @@ def generate_dicts(encode=True):
 
     type2cand_dict = {}
     start_t = time.time()
-    
+    print("Enterening the loop")
+    print("Datat[0]: ", gqa_d.data[0])
     for idx, ele in enumerate(gqa_d.data):
         if idx % 1000 == 0:
             time_per_iter = (time.time() - start_t) / (idx + 1e-9)
             print(f"{idx} / {len(gqa_d.data)}, finished. Time per iter: {time_per_iter:.3f}.", end='\r')
             type2cand_dict_p = os.path.join('meta_info/type2cand_dict.pkl')
             pickle.dump(type2cand_dict, open(type2cand_dict_p, 'wb'))
+        print("Datat[0]: ", gqa_d.data[idx])
         image_id, question_id = ele[0], ele[1]
         cur_p = os.path.join('mmnm_questions/', 'mmnm_{}.pkl'.format(image_id))
         entry = pickle.load(open(cur_p, 'rb'))[question_id]
